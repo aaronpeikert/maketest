@@ -1,8 +1,6 @@
 # Tasks is the first level of parallelisation
-# it is the more inefficient way
-# but each task can be executed on a different machine (TARDIS)
 NTASKS = 4
-# Cores is the second level it may or maybe not utilised by OUTSCRIPT
+# Cores is the second level of parallelisation which OUTSCRIPT may utilise
 NCORES = 1
 # A directory with one file per tasks that specifies the execution of OUTSCRIPT
 INDIR = data/settings
@@ -12,7 +10,7 @@ INSCRIPT = settings.R
 OUTDIR = data/results
 # A script that uses specifications from INDIR to generate results
 OUTSCRIPT = script.R
-# The used file extension
+# The used file extension for files in INDIR/OUTDIR
 SUFFIX = .txt
 
 all: $(INDIR) $(OUTDIR)
@@ -23,8 +21,13 @@ $(INDIR): $(INSCRIPT)
 	Rscript --vanilla $< $(NTASKS)
 
 outdir: $(INDIR) $(OUTDIR)
+# replace the dir stem of the indir with the outdir
+# each file in INDIR will therefore correspond exactly to one file in OUTDIR
 RESULTS = $(addprefix $(OUTDIR)/, $(notdir $(wildcard $(INDIR)/*$(SUFFIX))))
 $(OUTDIR): $(RESULTS)
+# since OUTDIR depends on RESULTS make searches for an implicit rule to
+# generate each element in RESULTS
+# this rule calls for OUTSCRIPT with the corresponding file in INDIR as argument
 $(OUTDIR)/%$(SUFFIX): $(INDIR)/%$(SUFFIX)
 	Rscript --vanilla $(OUTSCRIPT) $<
 
