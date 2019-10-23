@@ -6,7 +6,7 @@ NCORES = 1
 INDIR = data/settings
 # A script that fills INDIR
 INSCRIPT = settings.R
-# A directory that contains one corresponding file per file in INDIR
+# A directory that contains one corresponding file in PUTDIR per file in INDIR
 OUTDIR = data/results
 # A script that uses specifications from INDIR to generate results
 OUTSCRIPT = script.R
