@@ -15,12 +15,12 @@ SUFFIX = .txt
 
 all: $(INDIR) $(OUTDIR)
 
-indir: $(INDIR)
+input: $(INDIR)
 
 $(INDIR): $(INSCRIPT)
 	Rscript --vanilla $< $(NTASKS)
 
-outdir: $(INDIR) $(OUTDIR)
+output: $(INDIR) $(OUTDIR)
 # replace the dir stem of the indir with the outdir
 # each file in INDIR will therefore correspond exactly to one file in OUTDIR
 RESULTS = $(addprefix $(OUTDIR)/, $(notdir $(wildcard $(INDIR)/*$(SUFFIX))))
