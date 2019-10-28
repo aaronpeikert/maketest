@@ -1,2 +1,4 @@
 data/
 .Rproj.user
+dockerimg-*.tar
+*.sif
