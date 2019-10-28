@@ -62,8 +62,6 @@ make DOCKER=TRUE input && make DOCKER=TRUE output
 
 ### docker & paralell
 
-*under construction*
-
 * on the local machine within multiple containers
 
 ```
@@ -74,8 +72,6 @@ make DOCKER=TRUE input && make -j 4 DOCKER=TRUE output
 ```
 
 ### singularity
-
-*under construction*
 
 * on the local machine within a singularity container
 
@@ -94,7 +90,7 @@ make SINGULARITY=TRUE input && make SINGULARITY=TRUE output
 
 ```
 # execute
-make input && make QSUB=TRUE output 
+make input && make TORQUE=TRUE output 
 ```
 
 ### TORQUE/qsub & singularity
@@ -105,7 +101,7 @@ make input && make QSUB=TRUE output
 
 ```
 # execute
-make SINGULARITY=TRUE input && make SINGULARITY=TRUE QSUB=TRUE output 
+make SINGULARITY=TRUE input && make SINGULARITY=TRUE TORQUE=TRUE output 
 ```
 
 # Parallelisation

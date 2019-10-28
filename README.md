@@ -72,8 +72,6 @@ I have not (yet) figured out how to circumvent this inconvinience.
 
 ### docker & paralell
 
-*under construction*
-
   - on the local machine within multiple containers
 
 <!-- end list -->
@@ -84,8 +82,6 @@ I have not (yet) figured out how to circumvent this inconvinience.
     make DOCKER=TRUE input && make -j 4 DOCKER=TRUE output 
 
 ### singularity
-
-*under construction*
 
   - on the local machine within a singularity container
 
@@ -105,7 +101,7 @@ I have not (yet) figured out how to circumvent this inconvinience.
 <!-- end list -->
 
     # execute
-    make input && make QSUB=TRUE output 
+    make input && make TORQUE=TRUE output 
 
 ### TORQUE/qsub & singularity
 
@@ -117,7 +113,7 @@ I have not (yet) figured out how to circumvent this inconvinience.
 <!-- end list -->
 
     # execute
-    make SINGULARITY=TRUE input && make SINGULARITY=TRUE QSUB=TRUE output 
+    make SINGULARITY=TRUE input && make SINGULARITY=TRUE TORQUE=TRUE output 
 
 # Parallelisation
 
