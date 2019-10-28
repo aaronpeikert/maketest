@@ -77,12 +77,14 @@ $(OUTDIR): $(RESULTS)
 $(OUTDIR)/%$(SUFFIX): $(INDIR)/%$(SUFFIX)
 	$(RUN) Rscript --vanilla $(OUTSCRIPT) $<
 
-build: Dockerfile
+build: docker
+
+docker: Dockerfile
 	docker build -t $(PROJECT) $(CURDIR)
 
 singularity: $(PROJECT).sif
 
-$(PROJECT).sif: build
+$(PROJECT).sif: docker
 	singularity build $@ docker-daemon://$(PROJECT):latest
 
 reset:
