@@ -12,7 +12,8 @@ OUTDIR = data/results
 # A script that uses specifications from INDIR to generate results
 OUTSCRIPT = script.R
 # The used file extension for files in INDIR/OUTDIR
-SUFFIX = .txt
+INSUFFIX = .txt
+OUTSUFFIX = .txt
 
 ### Generall Computation Options ###
 # Tasks is the first level of parallelisation
@@ -70,12 +71,12 @@ output: $(INDIR) $(OUTDIR)
 # each file in INDIR will therefore correspond exactly to one file in OUTDIR
 # these files need to exist when the variable is evaluated
 # this is the reason why two runs of make are neccesary
-RESULTS = $(addprefix $(OUTDIR)/, $(notdir $(wildcard $(INDIR)/*$(SUFFIX))))
+RESULTS = $(addprefix $(OUTDIR)/, $(notdir $(wildcard $(INDIR)/*$(INSUFFIX))))
 $(OUTDIR): $(RESULTS)
 # since OUTDIR depends on RESULTS make searches for an implicit rule to
 # generate each element in RESULTS
 # this rule calls for OUTSCRIPT with the corresponding file in INDIR as argument
-$(OUTDIR)/%$(SUFFIX): $(INDIR)/%$(SUFFIX)
+$(OUTDIR)/%$(OUTSUFFIX): $(INDIR)/%$(INSUFFIX)
 	$(RUN1) Rscript --vanilla $(OUTSCRIPT) $< $(RUN2)
 
 build: docker
