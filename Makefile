@@ -51,11 +51,11 @@ ifeq ($(SINGULARITY),TRUE)
 endif
 
 ifeq ($(TORQUE),TRUE)
-	QRUN := qsub $(QFLAGS)
-	current_dir=/home/rstudio
+	QRUN1 := qsub $(QFLAGS) -F "
+	QRUN2 := " forward.sh
 endif
 
-RUN = $(QRUN) $(SRUN) $(DRUN)
+RUN = $(QRUN1) $(SRUN) $(DRUN) $(QRUN2)
 
 all: $(INDIR) $(OUTDIR)
 
