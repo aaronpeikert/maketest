@@ -26,7 +26,7 @@ DCMD = run
 DHOME = /home/rstudio
 
 ### Singularity Options ###
-SFLAGS = -H $(CURDIR):$(SHOME) $(PROJECT).sif
+SFLAGS = -H $(CURDIR):$(SHOME) $(PROJECT)/$(PROJECT).sif
 SCMD = run
 SHOME = /home/rstudio
 
