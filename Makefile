@@ -26,7 +26,7 @@ DCMD = run
 DHOME = /home/rstudio
 
 ### Singularity Options ###
-SFLAGS = -H $(CURDIR):$(SHOME) $(PROJECT)/$(PROJECT).sif
+SFLAGS = -H $(CURDIR):$(SHOME) $(PROJECT).sif
 SCMD = run
 SHOME = /home/rstudio
 
@@ -34,7 +34,7 @@ SHOME = /home/rstudio
 WALLTIME = 0:05:00
 MEMORY = 3gb
 QUEUE = default
-QFLAGS = -q $(QUEUE) -l nodes=1:ppn=$(NCORES) -l walltime=$(WALLTIME) -l mem=$(MEMORY)
+QFLAGS = -d $(PROJECT) -q $(QUEUE) -l nodes=1:ppn=$(NCORES) -l walltime=$(WALLTIME) -l mem=$(MEMORY)
 
 ### Automatic Options ###
 PROJECT := $(strip $(notdir $(CURDIR)))# CURDIR is the place where make is executed
