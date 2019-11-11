@@ -59,8 +59,6 @@ I have not (yet) figured out how to circumvent this inconvinience.
 
 ### docker
 
-*under construction*
-
   - on the local machine within a docker container
 
 <!-- end list -->
@@ -94,8 +92,6 @@ I have not (yet) figured out how to circumvent this inconvinience.
 
 ### TORQUE/qsub
 
-*under construction*
-
   - on a TORQUE computation cluster with the clusters R-version
 
 <!-- end list -->
@@ -104,8 +100,6 @@ I have not (yet) figured out how to circumvent this inconvinience.
     make input && make TORQUE=TRUE output 
 
 ### TORQUE/qsub & singularity
-
-*under construction*
 
   - on a TORQUE computation cluster within multiple singularity
     containers
