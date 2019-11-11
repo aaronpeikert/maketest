@@ -34,7 +34,7 @@ SHOME = /home/rstudio
 WALLTIME = 0:05:00
 MEMORY = 3gb
 QUEUE = default
-QFLAGS = -d $(PROJECT) -q $(QUEUE) -l nodes=1:ppn=$(NCORES) -l walltime=$(WALLTIME) -l mem=$(MEMORY)
+QFLAGS = -d $(CURDIR) -q $(QUEUE) -l nodes=1:ppn=$(NCORES) -l walltime=$(WALLTIME) -l mem=$(MEMORY)
 
 ### Automatic Options ###
 PROJECT := $(strip $(notdir $(CURDIR)))# CURDIR is the place where make is executed
