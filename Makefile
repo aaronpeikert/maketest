@@ -55,14 +55,15 @@ ifeq ($(TORQUE),TRUE)
 	QRUN2 := " forward.sh
 endif
 
-RUN = $(QRUN1) $(SRUN) $(DRUN) $(QRUN2)
+RUN1 = $(QRUN1) $(SRUN) $(DRUN)
+RUN2 = $(QRUN2)
 
 all: $(INDIR) $(OUTDIR)
 
 input: $(INDIR)
 
 $(INDIR): $(INSCRIPT)
-	$(RUN) Rscript --vanilla $< $(NTASKS)
+	$(RUN1) Rscript --vanilla $< $(NTASKS) $(RUN2)
 
 output: $(INDIR) $(OUTDIR)
 # replace the dir stem of each file in INDIR with the OUTDIR
@@ -75,7 +76,7 @@ $(OUTDIR): $(RESULTS)
 # generate each element in RESULTS
 # this rule calls for OUTSCRIPT with the corresponding file in INDIR as argument
 $(OUTDIR)/%$(SUFFIX): $(INDIR)/%$(SUFFIX)
-	$(RUN) Rscript --vanilla $(OUTSCRIPT) $<
+	$(RUN1) Rscript --vanilla $(OUTSCRIPT) $< $(RUN2)
 
 build: docker
 
