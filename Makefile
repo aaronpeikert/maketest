@@ -22,23 +22,30 @@ NTASKS = 4
 NCORES = 1
 
 ### Docker Options ###
+# --user indicates which user to emulate
+# -v which on directory the host should be accessable in the container
+# the last argument is the name of the container which is the project name
 DFLAGS = --rm --user $(UID) -v $(CURDIR):$(DHOME) $(PROJECT)
 DCMD = run
 DHOME = /home/rstudio
 
 ### Singularity Options ###
+# -H is the same as -v for docker
 SFLAGS = -H $(CURDIR):$(SHOME) $(PROJECT).sif
 SCMD = run
 SHOME = /home/rstudio
 
 ### qsub Options ###
+# see tardis.mpib.berlin.mpg.de/docs
 WALLTIME = 0:05:00
 MEMORY = 3gb
 QUEUE = default
 QFLAGS = -d $(CURDIR) -q $(QUEUE) -l nodes=1:ppn=$(NCORES) -l walltime=$(WALLTIME) -l mem=$(MEMORY)
 
 ### Automatic Options ###
+# the project name is assumed to be the name of the directory
 PROJECT := $(strip $(notdir $(CURDIR)))# CURDIR is the place where make is executed
+# for the docker permissions the user id is saved
 UID = $(shell id -u)
 
 ifeq ($(DOCKER),TRUE)
