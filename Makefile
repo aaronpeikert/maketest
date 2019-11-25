@@ -84,7 +84,7 @@ $(OUTDIR): $(RESULTS)
 # generate each element in RESULTS
 # this rule calls for OUTSCRIPT with the corresponding file in INDIR as argument
 $(OUTDIR)/%$(OUTSUFFIX): $(INDIR)/%$(INSUFFIX)
-	$(RUN1) Rscript --vanilla $(OUTSCRIPT) $< $(RUN2)
+	$(RUN1) Rscript --vanilla $(OUTSCRIPT) $< $(NCORES) $(RUN2)
 
 build: docker
 
